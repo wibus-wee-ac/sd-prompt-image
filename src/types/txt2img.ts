@@ -11,14 +11,14 @@ export interface ITxt2Img {
   // hr_resize_x: number;
   // hr_resize_y: number;
 
-  prompt: string;
-  negative_prompt: string;
-  steps: number;
-  cfg_scale: number;
-  width: number;
-  height: number;
-  restore_faces: boolean;
-  sampler_name: AnyObject;
+  prompt?: string;
+  negative_prompt?: string;
+  steps?: number;
+  cfg_scale?: number;
+  width?: number;
+  height?: number;
+  restore_faces?: boolean;
+  sampler_name?: AnyObject;
 
   // styles: Array<string>;
   // seed: number | -1;

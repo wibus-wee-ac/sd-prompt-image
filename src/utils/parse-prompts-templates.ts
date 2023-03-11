@@ -1,6 +1,7 @@
 import { ofetch } from "ofetch";
 import MarkdownIt from "markdown-it";
 import { AnyObject } from "../types/anyObject";
+import { generateLoraPrompt } from "./generateLora";
 
 export interface PromptTemplate {
   name: string;
@@ -11,6 +12,7 @@ export interface PromptTemplate {
   others: {
     [key: string]: string;
   };
+  otherNetworks?: string;
 }
 
 export interface PromptTemplates {
@@ -130,6 +132,7 @@ export async function parsePromptsTemplate() {
           }
         }
         result[type][result[type].length - 1].others = others;
+        result[type][result[type].length - 1].otherNetworks = generateLoraPrompt(others);
       }
     }
   }

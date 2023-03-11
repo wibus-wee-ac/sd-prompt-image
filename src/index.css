@@ -72,6 +72,24 @@ input:focus-visible {
   border-color: #646cff;
 }
 
+textarea {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  transition: border-color 0.25s;
+  resize: none;
+}
+
+textarea:focus,
+textarea:focus-visible {
+  outline: none;
+  border-color: #646cff;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -85,6 +103,9 @@ input:focus-visible {
     background-color: #f9f9f9;
   }
   input {
+    background-color: #f9f9f9;
+  }
+  textarea {
     background-color: #f9f9f9;
   }
 }
@@ -108,4 +129,33 @@ input:focus-visible {
 
 .desc {
   color: #888;
+}
+
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.scale-95 {
+  transform: scale(0.95);
+}
+
+.scale-100 {
+  transform: scale(1);
 }
