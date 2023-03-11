@@ -8,7 +8,6 @@ import { dialog } from '../../hooks/dialog';
 import { AppState } from '../../states/app';
 import { RuntimeState } from '../../states/runtime';
 import { ITxt2Img } from '../../types/txt2img';
-import { generateLoraPrompt } from '../../utils/generateLora';
 import { PromptTemplate } from '../../utils/parse-prompts-templates';
 import { Requester } from '../../utils/request';
 import styles from "./index.module.css"
@@ -24,6 +23,7 @@ const PromptDialog = () => {
     dialog.useDialogController('promptDialog');
   const props = _props.prompt_template as PromptTemplate
   const [prompts, setPrompts] = useState<IPrompts | null>(null)
+  const [count, setCount] = useState(1)
 
   useEffect(() => {
     setPrompts({
@@ -39,9 +39,21 @@ const PromptDialog = () => {
     })
   }, [props])
 
-  const handleGenerate = () => {
+  const handleGenerateImage = async () => {
+    await Txt2Img({
+      ...prompts,
+      prompt: `${prompts?.otherNetworks || ''},${prompts?.prompt}`
+    }).then((res) => {
+      res.images.forEach((image) => {
+        RuntimeState.images.push(image)
+      })
+    })
+  }
+
+  const handleGenerate = async () => {
     toast('Image is generating...')
     RuntimeState.started = true
+    handleClose();
     const progress = setInterval(() => {
       Requester(SD_APIS.GetProgress).then((res) => {
         toast(`Progress: ${(Number(res.progress) * 100).toFixed(2)}%`, {
@@ -56,14 +68,10 @@ const PromptDialog = () => {
         })
       })
     }, 3000)
-    Txt2Img({
-      ...prompts,
-      prompt: `${prompts?.otherNetworks || ''},${prompts?.prompt}`
-    }).then((res) => {
-      RuntimeState.images = [...RuntimeSnap.images, ...res.images]
-      clearInterval(progress)
-    })
-    handleClose();
+    for (let i = 0; i < count; i++) {
+      await handleGenerateImage()
+    }
+    clearInterval(progress)    
   }
 
   return (
@@ -108,6 +116,15 @@ const PromptDialog = () => {
                   </div>
 
                   <div>
+                    <div className={styles["form"]}>
+                      <h4>Count</h4>
+                      <input
+                        defaultValue={count}
+                        onChange={(e) => {
+                          setCount(Number(e.target.value))
+                        }}
+                      />
+                    </div>
                     <div className={styles["form"]}>
                       <h4>Prompt</h4>
                       <textarea
