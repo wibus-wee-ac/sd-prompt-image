@@ -55,7 +55,7 @@ paintings, sketches, (worst quality:2), (low quality:2), (normal quality:2), low
 export async function parsePromptsTemplate() {
   const md = new MarkdownIt();
   const markdown = await ofetch<string>(
-    "https://raw.githubusercontent.com/wibus-wee/stable_diffusion_chilloutmix_ipynb/main/prompts.md"
+    "https://ghproxy.com/https://raw.githubusercontent.com/wibus-wee/stable_diffusion_chilloutmix_ipynb/main/prompts.md"
   );
   const tokens = md.parse(markdown, {});
 
