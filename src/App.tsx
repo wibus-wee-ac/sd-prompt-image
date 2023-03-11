@@ -16,6 +16,7 @@ function App() {
     SFW: [],
     NSFW: [],
   })
+
   useEffect(() => {
     parsePromptsTemplate().then((res) => {
       setPrompts(res)
@@ -26,6 +27,10 @@ function App() {
     Requester(SD_APIS.GetSamplers).then((res) => {
       AppState.samplers = res
     })
+    AppState.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      AppState.theme = e.matches ? 'dark' : 'light'
+    })
   },[])
 
   return (
@@ -33,6 +38,7 @@ function App() {
       <Toaster
         closeButton
         richColors
+        theme={AppState.theme}
       />
       <div className={styles["header"]}>
         <a href="https://reactjs.org" target="_blank">

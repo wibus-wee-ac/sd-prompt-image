@@ -10,7 +10,9 @@ export const AppState = proxy<{
     }
   ] | [],
   options: AnyObject,
+  theme: "light" | "dark"
 }>({
   samplers: [],
   options: {},
+  theme: "light"
 })
