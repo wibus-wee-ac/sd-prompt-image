@@ -9,5 +9,5 @@ export function generateLoraPrompt(props: AnyObject){
     const weight = addNetWeights[index];
     const module = addNetModules[index];
     return `<${props[module].toLowerCase()}:${props[model].split('(')[0]}:${props[weight] || 1}>`;
-  }).join(',');
+  }).join(',') || "";
 }

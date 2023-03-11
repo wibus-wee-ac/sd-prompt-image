@@ -9,6 +9,7 @@ export const Prompts = (props: any) => {
     <>
       <h2>Library</h2>
       <div className={styles["container"]}>
+        <EmptyPrompt />
         {
           prompts.map((prompt: PromptTemplate, index: Key) => {
             return (
@@ -32,6 +33,26 @@ export const Prompt = (props: PromptTemplate) => {
     <div className={styles["prompt"]}>
       <img className={styles["image"]} src={props.image} alt={props.name} />
       <h3>{props.name}</h3>
+      <button onClick={() => {
+        open()
+      }}>Generate</button>
+    </div>
+  )
+}
+
+export const EmptyPrompt = () => {
+  const { open } = dialog.useDialog('promptDialog', {
+    title: 'Prompt Editor',
+  });
+
+  return (
+    <div className={styles["prompt"]}>
+      <div style={{
+        width: '1024px',
+        height: '1024px',
+        zoom: 0.3,
+      }} />
+      <h3>Untitled</h3>
       <button onClick={() => {
         open()
       }}>Generate</button>
