@@ -36,6 +36,10 @@
   overflow-y: hidden;
 }
 
+.images::-webkit-scrollbar {
+  display: none;
+}
+
 .image {
   display: flex;
   flex-direction: column;
