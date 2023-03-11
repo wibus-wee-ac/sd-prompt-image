@@ -89,3 +89,38 @@
 .generate:hover {
   background-color: #BFDBFE;
 }
+
+@media (prefers-color-scheme: dark) {
+  .bg {
+    background-color: #000000;
+    --bg-opacity: 0.2;
+    opacity: var(--bg-opacity) !important;
+  }
+
+  .panel {
+    background-color: #1F2937;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .title {
+    color: #ffffff;
+  }
+
+  .content {
+    color: #ffffff;
+  }
+
+  .content p {
+    color: #ffffff;
+  }
+
+  .generate {
+    background-color: #1F2937;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .generate:hover {
+    background-color: #3B4452;
+  }
+}
