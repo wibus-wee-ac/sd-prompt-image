@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@headlessui/react': ^1.7.13
   '@types/markdown-it': ^12.2.3
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -10,17 +11,20 @@ specifiers:
   ofetch: ^1.0.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-hook-dialog: ^1.2.1
   sonner: ^0.2.0
   typescript: ^4.9.3
   valtio: ^1.10.3
   vite: ^4.1.0
 
 dependencies:
+  '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
   clsx: 1.2.1
   markdown-it: 13.0.1
   ofetch: 1.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-dialog: 1.2.1_react@18.2.0
   sonner: 0.2.0_biqbaboplfbrettd7655fr4n2y
   valtio: 1.10.3_react@18.2.0
 
@@ -232,6 +236,18 @@ packages:
     dev: true
     optional: true
 
+  /@headlessui/react/1.7.13_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@swc/core-darwin-arm64/1.3.37:
     resolution: {integrity: sha512-iIyVqqioUpVeT/hbBVfkrsjfCyL4idNH+LVKGmoTAWaTTSB0+UNhNuA7Wh2CqIHWh1Mv7IlumitWPcqsVDdoEw==}
     engines: {node: '>=10'}
@@ -389,6 +405,10 @@ packages:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
     dev: false
 
+  /client-only/0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
+
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
@@ -541,6 +561,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-dialog/1.2.1_react@18.2.0:
+    resolution: {integrity: sha512-6M1aGYumxi++nSUg7A7MWjOWt5lvIDGeOeOTBCxQM/v6p4VT3ZXor7uBmOSKkhnbd4SKKJXnOyhPwzI3PQXsNQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react/18.2.0:
