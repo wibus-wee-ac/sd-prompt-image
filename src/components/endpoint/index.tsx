@@ -37,13 +37,13 @@ export default function Endpoint() {
     <div className={styles["endpoint"]}>
       <div className={styles["card"]}>
         <h2>Endpoint</h2>
-        <p className="">Enter the endpoint of the Stable Diffusion API</p>
+        <p>Enter the endpoint of the Stable Diffusion API</p>
         <input type="text" value={endpoint} onChange={(e) => setEndpoint(e.target.value)} style={{
           width: "200px",
         }} />
         <span className={styles["status"]} ref={statusRef} />
         <p className={styles["info"]}>
-          <p>You are using <strong>{options?.sd_model_checkpoint}</strong> as the model checkpoint.</p>
+          <span>You are using <strong>{options?.sd_model_checkpoint}</strong> as the model checkpoint.</span>
         </p>
       </div>
     </div>
