@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
+  grid-row-gap: 2rem;
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -21,10 +22,17 @@
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
   border-radius: 0.5rem;
   box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
 }
+
+@media (prefers-color-scheme: dark) {
+  .prompt {
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+  }
+}
+
 
 .image {
   zoom: 0.3;
