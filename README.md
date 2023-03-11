@@ -8,6 +8,12 @@ Based on [Stable Diffusion](https://github.com/AUTOMATIC1111/stable-diffusion-we
 🧪 Working in Progress
 </pre>
 
+## Features
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/62133302/224480927-58a29720-5210-4b82-affb-c0f5bc826d29.png" width="800" alt="preview">
+</div>
+
 ## Usage
 
 If you are using [wibus-wee/stable_diffusion_chilloutmix_ipynb](https://github.com/wibus-wee/stable_diffusion_chilloutmix_ipynb), you should turn the `apiSupport` to `true` in step 3 ( in "Startup Options" section ).
