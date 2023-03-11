@@ -1,33 +1,20 @@
-import { ofetch } from "ofetch";
-import { memo, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSnapshot } from "valtio";
 import { SD_APIS } from "../../constants/apis";
+import { AppState } from "../../states/app";
+import { Requester } from "../../utils/request";
 import testEndpoint from "../../utils/test-endpoint";
 import styles from "./index.module.css"
 
 export default function Endpoint() {
   const [endpoint, setEndpoint] = useState("");
-  const [info, setInfo] = useState<{
-    memory: string;
-  }>({
-    memory: "0",
-  });
+  const { options } = useSnapshot(AppState)
   const statusRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const endpoint = localStorage.getItem("endpoint");
     if (endpoint) {
       setEndpoint(endpoint);
-    }
-    const interval = setInterval(() => {
-      const endpoint = localStorage.getItem("endpoint");
-      ofetch(`${endpoint}/${SD_APIS.GetMemory}`).then((res) => {
-        setInfo({
-          memory: (res.ram.total / res.ram.free).toFixed(2),
-        })
-      });
-    }, 5000);
-    return () => {
-      clearInterval(interval);
     }
   }, []);
 
@@ -43,6 +30,7 @@ export default function Endpoint() {
       }
     }
     );
+    // Requester(SD_APIS.GetOptions).then(setInfo);
   }, [endpoint]);
 
   return (
@@ -55,7 +43,7 @@ export default function Endpoint() {
         }} />
         <span className={styles["status"]} ref={statusRef} />
         <p className={styles["info"]}>
-          <div>Using memory: {info.memory}%</div>
+          <p>You are using <strong>{options?.sd_model_checkpoint}</strong> as the model checkpoint.</p>
         </p>
       </div>
     </div>
