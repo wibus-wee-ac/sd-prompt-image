@@ -5,7 +5,6 @@ import { generateLoraPrompt } from "./generateLora";
 
 export interface PromptTemplate {
   name: string;
-  type: string;
   image?: string;
   prompts: string;
   negativePrompts: string;
@@ -13,11 +12,6 @@ export interface PromptTemplate {
     [key: string]: string;
   };
   otherNetworks?: string;
-}
-
-export interface PromptTemplates {
-  SFW: PromptTemplate[];
-  NSFW: PromptTemplate[];
 }
 
 const markdown = `
@@ -59,50 +53,39 @@ export async function parsePromptsTemplate() {
   );
   const tokens = md.parse(markdown, {});
 
-  let result: PromptTemplates = {
-    SFW: [],
-    NSFW: [],
-  };
+  let result: PromptTemplate[] = [];
+
   for (let i = 0; i < tokens.length; i++) {
     let name = "";
-    let type: keyof PromptTemplates = "SFW";
     let image: string | undefined = undefined;
     let prompts = "";
     let negativePrompts = "";
     let others: AnyObject = {};
 
-    let over = false;
     const token = tokens[i];
-    // console.log(i, token);
-
+    
     if (token.type === "inline") {
 
       if (token.content.includes("SFW]")) {
         name = token.content.split("]")[1].trim();
-        type = "SFW";
       }
 
-      if (token.content.includes("NSFW]")) {
-        name = token.content.split("]")[1].trim();
-        type = "NSFW";
-      }
-
-      if (name) result[type].push({ name, type, image, prompts, negativePrompts, others });
+      if (name) result.push({ name, image, prompts, negativePrompts, others });
 
       if (token.content.includes("Demo")) {
         image =
           token.children?.[4].content.match(/src="(.+?)"/)?.[1];
-        result[type][result[type].length - 1].image = image;
+        result[result.length - 1].image = image;
       }
 
       if (token.children?.[0].content === "Prompts 提示标签") {
         prompts = tokens[i + 2]?.content;
-        result[type][result[type].length - 1].prompts = prompts;
+        result[result.length - 1].prompts = prompts;
       }
 
       if (token.children?.[0].content === "Negative prompts 反向提示标签") {
         negativePrompts = tokens[i + 2]?.content;
-        result[type][result[type].length - 1].negativePrompts = negativePrompts;
+        result[result.length - 1].negativePrompts = negativePrompts;
       }
 
       if (token.children?.[0].content === "Others 其他") {
@@ -131,8 +114,8 @@ export async function parsePromptsTemplate() {
             }
           }
         }
-        result[type][result[type].length - 1].others = others;
-        result[type][result[type].length - 1].otherNetworks = generateLoraPrompt(others);
+        result[result.length - 1].others = others;
+        result[result.length - 1].otherNetworks = generateLoraPrompt(others);
       }
     }
   }

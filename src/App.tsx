@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import styles from './App.module.css'
 import Endpoint from './components/endpoint'
-import { parsePromptsTemplate, PromptTemplates } from './utils/parse-prompts-templates'
+import { parsePromptsTemplate, PromptTemplate } from './utils/parse-prompts-templates'
 import { Prompts } from './components/prompts'
 import { Toaster } from 'sonner'
 import { Requester } from './utils/request'
@@ -12,10 +12,7 @@ import Preview from './components/preview'
 
 function App() {
 
-  const [prompts, setPrompts] = useState<PromptTemplates>({
-    SFW: [],
-    NSFW: [],
-  })
+  const [prompts, setPrompts] = useState<PromptTemplate[]>([])
 
   useEffect(() => {
     parsePromptsTemplate().then((res) => {
@@ -48,7 +45,7 @@ function App() {
       </div>
       <Endpoint />
       <Preview />
-      <Prompts {...prompts} />
+      <Prompts prompts={prompts} />
     </div>
   )
 }

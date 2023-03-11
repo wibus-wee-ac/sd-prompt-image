@@ -1,33 +1,16 @@
-import { useEffect } from "react"
-import { toast } from "sonner"
-import { useSnapshot } from "valtio"
-import { Txt2Img } from "../../apis/txt2img"
-import { SD_APIS } from "../../constants/apis"
+import { Key } from "react"
 import { dialog } from "../../hooks/dialog"
-import { AppState } from "../../states/app"
-import { RuntimeState } from "../../states/runtime"
-import { generateLoraPrompt } from "../../utils/generateLora"
-import { PromptTemplate, PromptTemplates } from "../../utils/parse-prompts-templates"
-import { Requester } from "../../utils/request"
+import { PromptTemplate } from "../../utils/parse-prompts-templates"
 import styles from "./index.module.css"
 
-export const Prompts = (props: PromptTemplates) => {
+export const Prompts = (props: any) => {
+  const prompts = props.prompts as PromptTemplate[];
   return (
     <>
-      <h2>SFW</h2>
+      <h2>Library</h2>
       <div className={styles["container"]}>
         {
-          props.SFW.map((prompt, index) => {
-            return (
-              <Prompt {...prompt} key={index} />
-            )
-          })
-        }
-      </div>
-      <h2>NSFW</h2>
-      <div className={styles["container"]}>
-        {
-          props.NSFW.map((prompt, index) => {
+          prompts.map((prompt: PromptTemplate, index: Key) => {
             return (
               <Prompt {...prompt} key={index} />
             )
