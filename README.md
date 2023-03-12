@@ -1,7 +1,12 @@
 # sd-prompt-image
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/62133302/224480927-58a29720-5210-4b82-affb-c0f5bc826d29.png" width="800" alt="preview">
+<a href="https://sd-prompt-image.vercel.app">
+  <img src="https://user-images.githubusercontent.com/62133302/224480927-58a29720-5210-4b82-affb-c0f5bc826d29.png" width="800" alt="preview">
+</a>
+
+Click to see the preview ⬆️
+
 </div>
 
 A simple website to generate a image with prompts templates.
@@ -20,11 +25,11 @@ Here are some features of this app:
 - Use RESTFul API to generate a image
 - Native dark mode
 - Support LoRA Network
+- Customizable prompts templates
 
 There are some features that are not yet implemented:
 
-- [ ] Support "Addtional Network"
-- [ ] Customizable prompts templates
+- [ ] Authentication for RESTFul API
 - [ ] Choose custom checkpoints
 - [ ] Download the generated image
 
@@ -38,7 +43,7 @@ Or you can add `--api --cors-allow-origins "*" --listen` to the command line, an
 
 Because there is no way to generate a image with "Addtional Network", so in this app, we will add `<lora:lora_name:lora_weight>` to the end of the prompt to replace the "Addtional Network".
 
-However, using lora in "Addtional Network" seems to be a little different from using lora in prompt in the final generated image, i'm trying to fix this.
+Another thing is that not all users will have the "Additional Network" extentsion pre-installed, We should maintain maximum compatibility.
 
 ## Author
 
